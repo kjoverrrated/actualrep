@@ -1,0 +1,103 @@
+<html>
+<head>
+<style type="text/css">
+body {padding:0px;margin:0px;}
+</style>
+</head>
+<body>
+<canvas id="demo"></canvas>
+<script>
+//get the canvas element and create the 2d-drawing context
+var c=document.getElementById('demo');
+var cc=c.getContext("2d");
+
+//the following variables have a global scope, because they are used in various functions.
+var x,y;
+
+//this is where the animation is started.
+//25ms is a good framerate for animations.
+//the function "draw" (see below) will be executed each 25 milliseconds from now on.
+var animation=setInterval(draw,25);
+
+//let's add some event listeners, to respond to specific events raised by the user
+window.addEventListener("load",setDimensions);
+window.addEventListener("resize",setDimensions);
+window.addEventListener("keydown",directions); // whenever a key is pressed, the function "directions" will execute
+c.style.backgroundImage="url(http://htmlcanvas.quickersite.com/userfiles/snake-3237.jpg)";
+
+var goDown=false;goUp=false;goLeft=false;goRight=false;
+
+//this function sets the x and y variables, thus causing to move the block.
+function directions (e) {
+
+	goDown=false;
+	goUp=false;
+	goLeft=false;
+	goRight=false;
+
+	switch(e.keyCode) {
+	
+		case 38: //arrow-up
+			goUp=true;		
+			break;
+		case 40: //arrow-down
+			goDown=true;
+			break;
+		case 37: //arrow-left
+			goLeft=true;
+			break;
+		case 39: //arrow-right
+			goRight=true;
+			break;
+	}
+}
+
+//this function makes sure we'll always be using the entire width and 
+//height of a browser window, giving the animation somehow a 
+//responsive look and feel.
+function setDimensions() {
+	c.width=window.innerWidth;
+	c.height=window.innerHeight;
+	x=(window.innerWidth/2)-25;
+	y=(window.innerHeight/2)-25;
+};
+
+var arrBlocks=[ ];
+
+//this is the main function where you can program the animation.
+function draw() {
+
+	//check boundaries. avoid escaping the canvas
+	if (x<0) {x=0;return false;}
+	if (y<0) {y=0;return false;}
+	if (x>window.innerWidth-50) {x=window.innerWidth-50;return false;}
+	if (y>window.innerHeight-50) {y=window.innerHeight-50;return false;}
+	
+	//set the direction of the moving block
+	if (goUp) {y-=5};
+	if (goDown) {y+=5};
+	if (goLeft) {x-=5};
+	if (goRight) {x+=5};	
+
+	var block = {opacity:4, xPos:x, yPos:y};
+	
+	//add the newly created block to the array arrBlocks (unshift: add the block at the first position in the array)
+	arrBlocks.unshift (block);	
+	
+	//here the black rectangle will be drawn on the canvas
+	cc.clearRect(0,0,c.width,c.height);	
+	
+	for (var i=0;i<arrBlocks.length;i++) {	
+		cc.globalAlpha=arrBlocks[i].opacity;
+		cc.fillStyle="darkred";
+		cc.fillRect(arrBlocks[i].xPos, arrBlocks[i].yPos, 50, 50);	
+		arrBlocks[i].opacity=arrBlocks[i].opacity-0.05;
+	};
+	
+	//remove the last item in the array (pop-function) - this is how the block is removed from the array as it's invisible anyway
+	if (arrBlocks.length>20) {arrBlocks.pop()};
+		
+};
+</script>
+</body>
+</html>
