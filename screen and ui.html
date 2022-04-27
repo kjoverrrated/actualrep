@@ -2,10 +2,13 @@
 <html>
 <body>
 
-<canvas id="myCanvas" width="1000" height="1000" style="border:1px solid #d3d3d3;">
+<canvas id="myCanvas" width="1000" height="1000" style = "background-color: magenta;" style="border:1px solid #f705ff;">
 Your browser does not support the HTML canvas tag.</canvas>
 
 <button id = "start"> Click </button>
+
+
+
 <p id = "message"></p>
 
 <script>
@@ -16,33 +19,52 @@ start.addEventListener('w', (e) => {
     e.preventDefault();
 });
 
+
 start.addEventListener('mouseup', (e) => {
 
     let msg = document.querySelector('#message');
 
     switch (e.button){
+        // 1st button
         case 0:
-            msg.textContent = "fsdhfjejsdf";
-            console.log("he");
+            msg.textContent = "you clicked this";
+            console.log("leftclick");
             break;
+
+        // 2nd button    
+        case 1:
+            console.log("scroller");
+
+        case 2:
+            console.log("rightclick");
 
         default:
             console.log("n");
+
     }
 });
+
 
 
 //functions
 function draw(){
 
-var c = document.getElementById("myCanvas");
-var ctx = c.getContext("2d");
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
 
-ctx.moveTo(0,0);
-ctx.lineTo(200,1000);
-ctx.stroke();
-ctx.font = "90px Arial";
-ctx.fillText("H", 30, 200);
+    ctx.moveTo(0,0);
+    // drawing line
+    ctx.lineTo(400,1000);
+    ctx.stroke();
+    ctx.font = "90px Arial";
+    ctx.fillText("H", 30, 200);
+
+
+    /*
+    var bg = new Image();
+    bg.src = "startscreen.png";
+    ctx.drawImage(bg, 34, 43);
+    */
 
 
 };
