@@ -1,70 +1,59 @@
-
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>Drawing on Canvas</title>
+<html>
+<body>
+
+<canvas id="myCanvas" width="1000" height="1000" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML canvas tag.</canvas>
+
+<button id = "start"> Click </button>
+<p id = "message"></p>
+
 <script>
 
+let start = document.querySelector('#start');
 
-    function mousePos(){
+start.addEventListener('w', (e) => {
+    e.preventDefault();
+});
 
-        let rect = canvas.getBoundingClientRect();
-    
-        let x = event.clientX - rect.left;
-        let y = event.clientY - rect.top;
+start.addEventListener('mouseup', (e) => {
 
-        
+    let msg = document.querySelector('#message');
+
+    switch (e.button){
+        case 0:
+            msg.textContent = "fsdhfjejsdf";
+            console.log("he");
+            break;
+
+        default:
+            console.log("n");
     }
-
-    /*
-
-    object.onmousedown = function() {
-
-        console.log("Mouse Pressed.");
-    };
-*/
-
-var canvas = document.getElementById("myCanvas");
-var context = canvas.getContext("2d");   
-    canvas.addEventListener("mousemove", text, false);
+});
 
 
-    window.onload = function() {
+//functions
+function draw(){
 
-         context.font = "bold 32px Arial";
-         context.fillText("random start screen", 50, 100);
-         context.arc(46, 46, 240, 0, 2 * Math.PI, false);
-         context.stroke();
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
 
-         var bg = new Image();
-         bg.src = "startscreen.png";
-
-         window.onload = function(){
-            canvas.drawImage(bg, 0, 0);
-
-
-         };
+ctx.moveTo(0,0);
+ctx.lineTo(200,1000);
+ctx.stroke();
+ctx.font = "90px Arial";
+ctx.fillText("H", 30, 200);
 
 
-    function text(){
-
-        console.log("Text.");
-        console.log(e.screenX + " " + e.screenY);
-    };
+};
 
 
-    
-
-    
-
-    
+draw()
 
 
-    };
+
 </script>
-</head>
-<body>
-    <canvas id="myCanvas" width="300" height="200"></canvas>
+
 </body>
 </html>
+
