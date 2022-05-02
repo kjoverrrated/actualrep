@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" width="1000" height="1000" style = "background-color: magenta;" style="border:1px solid #f705ff;">
+Your browser does not support the HTML canvas tag.</canvas>
+
+<button id = "opt1"> 1 </button>
+<button id = "opt2"> 2 </button>
+
+
+
+<p id = "message"></p>
+
+<script>
+
+let opt1 = document.querySelector('#opt1');
+
+let opt2 = document.querySelector('#opt2');
+
+opt1.addEventListener('w', (e) => {
+    e.preventDefault();
+});
+
+
+opt2.addEventListener('w', (x) => {
+    x.preventDefault();
+});
+
+opt1.addEventListener('mouseup', (e) => {
+
+    let msg = document.querySelector('#message');
+
+    switch (e.button){
+        // 1st button
+        case 0:
+            msg.textContent = "you clicked this";
+            console.log("leftclick");
+            break;
+
+        // 2nd button    
+        case 1:
+            console.log("scroller");
+
+        case 2:
+            console.log("rightclick");
+
+        default:
+            console.log("n");
+
+    }
+
+    
+});
+
+
+opt2.addEventListener('mouseup', (x) => {
+
+let msg = document.querySelector('#message');
+
+switch (x.button){
+    // 1st button
+    case 0:
+        msg.textContent = "you clicked this";
+        console.log("pls");
+        break;
+
+    // 2nd button    
+    case 1:
+        console.log("just");
+
+    case 2:
+        console.log("dont");
+
+    default:
+        console.log("do whatver");
+
+}
+
+
+});
+
+
+//functions
+function draw(){
+
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+
+    ctx.moveTo(0,0);
+    // drawing line
+    ctx.lineTo(400,1000);
+    ctx.stroke();
+    ctx.font = "90px Arial";
+    ctx.fillText("H", 30, 200);
+
+
+    /*
+    var bg = new Image();
+    bg.src = "startscreen.png";
+    ctx.drawImage(bg, 34, 43);
+    */
+
+
+};
+
+
+draw()
+
+
+
+</script>
+
+</body>
+</html>
