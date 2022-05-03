@@ -2,33 +2,130 @@
 <html>
 <body>
 
-<canvas id="myCanvas" width="1000" height="1000" style = "background-color: magenta;" style="border:1px solid #f705ff;">
+<canvas id="myCanvas" width="1200" height="700" style = "background-color: magenta;" style="border:1px solid #f705ff;">
 Your browser does not support the HTML canvas tag.</canvas>
 
-<button id = "start"> Click </button>
-
+<button id = "opt1"> 1 </button>
+<button id = "opt2" > 2 </button> 
+<button id = "opt3" > 3 </button> 
 
 
 <p id = "message"></p>
 
 <script>
 
-let start = document.querySelector('#start');
+var image = "url(http://htmlcanvas.quickersite.com/userfiles/snake-3237.jpg)";
+var a = 1;
+let canvas;
+let context;
+let secondsPassed;
+let oldTimeStamp;
+let fps;
 
-start.addEventListener('w', (e) => {
+window.onload = init;
+
+function init() {
+            window.requestAnimationFrame(gameLoop);
+        }
+
+
+function gameLoop(timeStamp) {
+
+    // Calculate the number of seconds passed since the last frame
+    secondsPassed = (timeStamp - oldTimeStamp) / 1000;
+    oldTimeStamp = timeStamp;
+
+    // Calculate fps
+    fps = Math.round(1 / secondsPassed);
+
+    // Draw number to the screen
+    /*
+    context.fillStyle = 'white';
+    context.fillRect(0, 0, 200, 100);
+    context.font = '25px Arial';
+    context.fillStyle = 'black';
+    context.fillText("FPS: " + fps, 10, 30);
+*/
+    // Perform the drawing operation
+    draw();
+
+    // The loop function has reached it's end
+    // Keep requesting new frames
+    window.requestAnimationFrame(gameLoop);
+
+}
+
+//functions
+function draw(){
+
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    c.style.backgroundSize="cover";
+    c.style.backgroundImage= image
+    
+
+	
+    // ctx.moveTo(0,0);
+    // drawing line
+    // ctx.lineTo(400,1000);
+
+    if(a == 1){
+
+    ctx.stroke();
+    ctx.font = "90px Comic Sans MS";
+    ctx.fillStyle = "white";
+    ctx.fillText("Context.", 30, 200);
+    ctx.font = "50px Comic Sans MS";
+
+    ctx.fillText("day ii.", 130, 350);
+
+    }
+    else{
+        //var image = "url(http://htmlcanvas.quickersite.com/userfiles/snake-3237.jpg)";
+        //ctx.drawImage(image, 20, 20);
+        image = "url(https://i.guim.co.uk/img/media/f75d37dbe67cb269e5e16819cde298ac5d2c0f68/0_468_4836_2901/master/4836.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=81cfd9bb173728f36716447884a2c905)";
+        ctx.fillStyle = "black";
+        ctx.fillText("????.", 30, 200);
+
+    };
+
+
+
+
+    /*
+    var bg = new Image();
+    bg.src = "startscreen.png";
+    ctx.drawImage(bg, 34, 43);
+    */
+
+    // draw image "guest mode" and "continue from day i"
+    // ref event listener for clicks made on each. 
+    // guest mode runs random stats
+    // cont is UI from pygame project. (figure out file handling)
+
+
+};
+
+
+
+
+let opt1 = document.querySelector('#opt1');
+
+opt1.addEventListener('w', (e) => {
     e.preventDefault();
 });
 
 
-start.addEventListener('mouseup', (e) => {
+opt1.addEventListener('mouseup', (e) => {
 
-    let msg = document.querySelector('#message');
+    let msg = document.querySelector('#opt2');
 
     switch (e.button){
         // 1st button
         case 0:
-            msg.textContent = "you clicked this";
             console.log("leftclick");
+            a += 1;
+            console.log(a);
             break;
 
         // 2nd button    
@@ -45,33 +142,62 @@ start.addEventListener('mouseup', (e) => {
 });
 
 
+///////
+opt2.addEventListener('w', (x) => {
+    e.preventDefault();
+});
 
-//functions
-function draw(){
+opt2.addEventListener('mouseup', (x) => {
 
-    var c = document.getElementById("myCanvas");
-    var ctx = c.getContext("2d");
+let msg = document.querySelector('#opt3');
 
-    ctx.moveTo(0,0);
-    // drawing line
-    ctx.lineTo(400,1000);
-    ctx.stroke();
-    ctx.font = "90px Arial";
-    ctx.fillText("H", 30, 200);
+switch (x.button){
+    // 1st button
+    case 0:
+        console.log("button2");
+        break;
+
+    // 2nd button    
+    case 1:
+        console.log("button2 mid");
+
+    case 2:
+        console.log("b2");
+
+    default:
+        console.log("n");
+
+}
+});
 
 
-    /*
-    var bg = new Image();
-    bg.src = "startscreen.png";
-    ctx.drawImage(bg, 34, 43);
-    */
+//////
+opt3.addEventListener('w', (ee) => {
+    e.preventDefault();
+});
 
+opt3.addEventListener('mouseup', (ee) => {
 
-};
+let msg = document.querySelector('#message');
 
+switch (ee.button){
+    // 1st button
+    case 0:
+        console.log("333");
+        break;
 
-draw()
+    // 2nd button    
+    case 1:
+        console.log("33");
 
+    case 2:
+        console.log("3");
+
+    default:
+        console.log("n");
+
+}
+});
 
 
 </script>
