@@ -1,0 +1,40 @@
+tutorial script
+So you're looking to catch some fish? Do you want me to show you the basics?
+>>>>Yes
+First, you actually WANT to cast your line... go ahead, hit left click.
+>>>>>if they still haven't hit left click
+...any day now
+...you know I actually have things to do...
+...whatever I'll do it for you
+>>>>if they hit left click
+Good job. Now we wait
+***The fish thing goes down and up***
+Hit right click to reel it in
+***Math Text Box pops up***
+Woah. You've encountered your first pop-up... go ahead and solve it... since this is the tutorial, it's multiple choice. Go ahead, pick the right one.
+>>>wrong
+Try again
+>>>right
+Good job. You're one math wizard even though it took you [seconds] seconds to answer.
+**Fish graphic**
+That is one...good looking...fish? Anywho, you've caught your first fish. I'll leave you to it. Just remember, left click, right click, answer math, success.
+
+timer for 6 minutes shows up... 
+
+***6 minutes are up***
+Time to go to bed
+
+
+Display
+____________________________________________________________
+|                                                          |
+|                         Day 1                            |
+|                       Complete                           |
+|                                                          |
+|      Total Fish Caught:                                  |
+|      Average Time it took to solve a problem:            |
+|                                                          |
+|      {Dialouge making fun of how bad...or good they are} |
+|                                                          |
+|                                                          |
+|__________________________________________________________| 
