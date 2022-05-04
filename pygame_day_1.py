@@ -10,6 +10,10 @@ my_font = pygame.font.SysFont('Comic Sans MS', 30)
 loading = False
 surface = pygame.display.set_mode((WIDTH,HEIGHT), pygame.SRCALPHA)
 fadedone = False
+tutorial = False
+fades = 0
+runfades = False
+textfadedone = False
 def on_mouse_down(pos): #button configuration 
   #calculates the distances for the mouse and the button
   global loading
@@ -30,7 +34,7 @@ def draw_rect_alpha(surface, color, rect):
 
 
 def loadingscreen():
-  global fadedone, loading
+  global fadedone, loading, tutorial
   if fadedone == False:
     for alpha in range(0, 1275):
           #pygame.draw.rect(surface, (0,0,0,0), pygame.Rect(0, 0, WIDTH, HEIGHT))
@@ -39,20 +43,54 @@ def loadingscreen():
           pygame.display.flip()
           if alpha >= 255:
             fadedone = True
+          if alpha >= 1200:
+            tutorial = True
   if fadedone == True:
     loading = False
     
     draw_rect_alpha(surface, (0, 0, 0, 255), (0, 0, WIDTH, HEIGHT))
     screen.draw.text("loading...", center = (WIDTH/2, HEIGHT/2), color = (255,255,255))
+
+
+
+def fadess():
+  global tutorial, fades, runfades, textfadedone
+  runfades = True
+  if tutorial == True:
+    for alphas in range(0, 1275):
+      draw_rect_alpha(surface, (0, 0, 255, (alphas/5)), (0, 500, WIDTH, HEIGHT))
+      print(alphas)
+      if alphas >= 1200:
+        fades = 1
+    if fades == 1:
+      textfadedone = True
+
+
+
+
+
+
   
 def draw():
-  global loading
-  screen.blit("hello.png", (0,0))
+  global loading, runfades, textfadedone
+  if tutorial == False:
+    screen.blit("hello.png", (0,0))
  
   if loading == True:
     clock.schedule_unique(loadingscreen, 1)
-  
+  if tutorial == True:
+    screen.blit("pond.png", (0,0))
+    if textfadedone == False:
+      clock.schedule_unique(fadess, 3)
+    if runfades == True and textfadedone == False:
+      fadess()
+    if textfadedone == True:
+      draw_rect_alpha(surface, (0, 0, 255), (0, 500, WIDTH, HEIGHT))
+      draw_rect_alpha(surface, (255,255,255), (0,485,WIDTH, 15))
     
+
+
+
 
 pgzrun.go()
 
