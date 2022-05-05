@@ -23,11 +23,12 @@ characterpos = 50
 stupidscreen = Actor("stupid.png", pos = (0,700))
 linecasted = False
 mathisinsession = False
-
+mathtime = False
+value = ""
 #do i use actors for everything???maybe i make the math thing a class
 #various actor creations
 #cannot figure out how to make it simplified to ignore this
-base = Actor("base.png", pos = (750,200))
+base = Actor("base.png", pos = (750,220))
 one = Actor("1.png", pos = (600,220))
 two = Actor("2.png", pos = (650,220))
 three = Actor("3.png", pos = (700, 220))
@@ -41,9 +42,29 @@ zero = Actor("0.png", pos = (800,260))
 backspace = Actor("back.png", pos = (675, 300))
 submit = Actor("submit.png", pos = (725, 300))
 
+
+
+
+
+mathproblems = {
+  "2 + 2 = " : "4",
+  "342 + 356 = " : "698",
+  "2 + 9 = " : "11",
+  "6 * 5 * 2 = ": "60",
+  "6^4 *2 + 5 = " : "2597",
+  "fifty-four plus five equals:" : "59",
+  "-1 + 2 = " : "1",
+  "9 * 45 = " : "405",
+  "4 * 9 + 3 * 6 + 2 / 4 - 4 + 2 = " : "53",
+  "3 + 1 + 2 / 1 + 2 * 6 = " : "18",
+}
+
+
+#average math time and fish caught
+
 def on_mouse_down(pos, button): #button configuration 
   #calculates the distances for the mouse and the button
-  global loading, tutorial, line, tutorialtexts, mathisinsession, linecasted
+  global loading, tutorial, line, tutorialtexts, mathisinsession, linecasted, mathtime, value
   startdistancesx = pos[0] - 575 
   startdistancesy = pos[1]- 335
   if tutorial == False and button == mouse.LEFT:
@@ -52,17 +73,45 @@ def on_mouse_down(pos, button): #button configuration
     elif -190 < startdistancesx < 190 and  55 < startdistancesy < 130: #if the user clicks the settings
       print(str(startdistancesx) + " " + str(startdistancesy))
   if tutorial == True and button == mouse.LEFT and line < 8:
-    
     if line == 2:
       linecasted = True
       line = 7
       clock.schedule_unique(mathzzzz,5)
     tutorialtext()
-  if mathisinsession == True and button == mouse.RIGHT:
+  if mathisinsession == True and button == mouse.LEFT and mathtime == False:#CHANGE THIS CHANGE CHANGE CHANGE CHANGE CHANGE CHANGE CHANGE CHANGE CHANGE CHANGE CHANGE CHANGE CHANGE CANGE
     tutorialtext()
+    mathtime = True
   if 10 <= line <= 12:
     tutorialtext()
+  #here we go the various math problems
+  #math
+  if mathtime == True:
+    if len(value) < 8:
+      if line >= 13:
+        if one.collidepoint(pos):
+          value += "1"
+        if two.collidepoint(pos):
+          value += "2"
+        if three.collidepoint(pos):
+          value += "3"
+        if four.collidepoint(pos):
+          value += "4"
+        if five.collidepoint(pos):
+          value += "5"
+        if six.collidepoint(pos):
+          value += "6"
+        if seven.collidepoint(pos):
+          value += "7"
+        if eight.collidepoint(pos):
+          value += "8"
+        if nine.collidepoint(pos):
+          value += "9"
+        if zero.collidepoint(pos):
+          value += "0"
+      if backspace.collidepoint(pos):
+          value = ""
     
+      
 
 
 
@@ -81,7 +130,6 @@ def loadingscreen():
     for alpha in range(0, 1275):
           #pygame.draw.rect(surface, (0,0,0,0), pygame.Rect(0, 0, WIDTH, HEIGHT))
           draw_rect_alpha(surface, (0, 0, 0, (alpha/5)), (0, 0, WIDTH, HEIGHT))
-          print(alpha)
           pygame.display.flip()
           if alpha >= 255:
             fadedone = True
@@ -102,7 +150,6 @@ def fadess():
   if tutorial == True:
     for alphas in range(0, 1275):
       draw_rect_alpha(surface, (0, 0, 255, (alphas/5)), (0, 500, WIDTH, HEIGHT))
-      print(alphas)
       if alphas >= 1200:
         fades = 1
     if fades == 1:
@@ -116,12 +163,10 @@ def fadess():
       
 #----------------
 def tutorialtext():
-  global line, listoflines, tutorialtexts
+  global line, listoflines, tutorialtexts, mathtime
   
   tutorialtexts = listoflines[line]
   line += 1
-
-
 
 
 
@@ -153,8 +198,22 @@ def draw():
       if line >= 8:
         draw_rect_alpha(surface, (0, 0, 255), (0, 500, WIDTH, HEIGHT))
         draw_rect_alpha(surface, (255,255,255), (0,485,WIDTH, 15))
-        screen.draw.text(tutorialtexts, topleft = (40,500), color = (255,255,255), fontsize = 35)
-      
+        screen.draw.text(tutorialtexts, topleft = (40,520), color = (255,255,255), fontsize = 30)
+      if mathtime == True:
+        base.draw()
+        one.draw()
+        two.draw()
+        three.draw()
+        four.draw()
+        five.draw()
+        six.draw()
+        seven.draw()
+        eight.draw()
+        nine.draw()
+        zero.draw()
+        backspace.draw()
+        submit.draw()
+        screen.draw.text(value, topleft = (580, 125), fontsize = 50)
     
 def mathzzzz():
   global mathisinsession, line
@@ -162,20 +221,7 @@ def mathzzzz():
   line = 8
   tutorialtext()
 
-def drawmaths():
-    base.draw()
-    one.draw()
-    two.draw()
-    three.draw()
-    four.draw()
-    five.draw()
-    six.draw()
-    seven.draw()
-    eight.draw()
-    nine.draw()
-    zero.draw()
-    backspace.draw()
-    submit.draw()
+
 pgzrun.go()
 
 
