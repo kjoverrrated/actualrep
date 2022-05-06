@@ -2,7 +2,7 @@
 <html>
 <body>
 
-<canvas id="myCanvas" width="1200" height="700" style = "background-color: magenta;" style="border:1px solid #f705ff;">
+<canvas id="myCanvas" width="1300" height="700" style = "background-color: magenta;" style="border:1px solid #f705ff;">
 Your browser does not support the HTML canvas tag.</canvas>
 
 <button id = "opt1"> 1 </button>
@@ -43,6 +43,23 @@ let secondsPassed;
 let oldTimeStamp;
 let fps;
 
+
+
+// just because you can do this doesn't mean you should, but i don't yet know the alternative
+var font1 = "90px Comic Sans MS";
+var font2 = "30px Comic Sans MS";
+
+//use these to move text
+var textPosx = 30;
+var textPosy = 200;
+
+var textPosx2 = 130;
+var textPosy2 = 350;
+
+var colour = "white";
+
+
+
 window.onload = init;
 
 function init() {
@@ -59,18 +76,8 @@ function gameLoop(timeStamp) {
     // Calculate fps
     fps = Math.round(1 / secondsPassed);
 
-    // Draw number to the screen
-    /*
-    context.fillStyle = 'white';
-    context.fillRect(0, 0, 200, 100);
-    context.font = '25px Arial';
-    context.fillStyle = 'black';
-    context.fillText("FPS: " + fps, 10, 30);
-*/
-    // Perform the drawing operation
     draw();
 
-    // The loop function has reached it's end
     // Keep requesting new frames
     window.requestAnimationFrame(gameLoop);
 
@@ -90,23 +97,35 @@ function draw(){
     // drawing line
     // ctx.lineTo(400,1000);
 
-    if(a == 1){
 
     ctx.stroke();
-    ctx.font = "90px Comic Sans MS";
-    ctx.fillStyle = "white";
-    ctx.fillText("Context.", 30, 200);
-    ctx.font = "50px Comic Sans MS";
+    
+     // these exist always, but they're manipulated through functions that change the variables.
+      // screen clearing used to be easy.
 
-    ctx.fillText("day ii.", 130, 350);
+    ctx.font = font1;
+    ctx.fillStyle = colour;
+    ctx.fillText("Context: day ii.", textPosx, textPosy);
+
+    ctx.font = font2;
+    ctx.fillText("select 1 to continue the game...", textPosx2, textPosy2);
+
+
+    if(a == 1){
+
+      screen1()
+
 
     }
+
     else{
+
+      screen2()
+
         //var image = "url(http://htmlcanvas.quickersite.com/userfiles/snake-3237.jpg)";
         //ctx.drawImage(image, 20, 20);
         image = "url(https://i.guim.co.uk/img/media/f75d37dbe67cb269e5e16819cde298ac5d2c0f68/0_468_4836_2901/master/4836.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=81cfd9bb173728f36716447884a2c905)";
-        ctx.fillStyle = "black";
-        ctx.fillText("????.", 30, 200);
+        
 
     };
 
@@ -128,6 +147,30 @@ function draw(){
 };
 
 
+function screen1(){
+
+
+
+
+}
+
+
+function warnings(){
+
+  if(warningType == 1){
+
+  }
+
+}
+
+
+function screen2(){
+  
+
+
+
+
+}
 
 
 let opt1 = document.querySelector('#opt1');
@@ -225,4 +268,3 @@ switch (ee.button){
 
 </body>
 </html>
-
