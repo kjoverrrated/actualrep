@@ -16,7 +16,10 @@ Your browser does not support the HTML canvas tag.</canvas>
 
 <script>
 
-	
+	// remember when you were a madman,
+	// thought you was batman?
+
+
 // instant input from day 1:
 // if does not exist, random figures are generated
 // if exists, the player is shamed no matter what their score is. 
@@ -36,8 +39,9 @@ Your browser does not support the HTML canvas tag.</canvas>
 	// inner function deux: later
 	
 	
-	
+//starting image
 var image = "url(https://graf1x.com/wp-content/uploads/2017/11/magenta-color-paint-code-swatch-chart-rgb-html-hex.png)";
+
 var a = 1;
 var b = 1;
 var c = 1;
@@ -49,6 +53,7 @@ let oldTimeStamp;
 let fps;
 let warningType;
 
+// phases
 var ph1 = true;
 var ph2 = false;
 var ph3 = false;
@@ -57,7 +62,7 @@ var ph3 = false;
 var font1 = "90px Comic Sans MS";
 var font2 = "30px Comic Sans MS";
 
-//use these to move text
+//use these to alter text
 var textPosx = 30;
 var textPosy = 200;
 
@@ -77,6 +82,7 @@ function init() {
         }
 
 
+// calls draw repeatedly to update any changes made within the function
 function gameLoop(timeStamp) {
 
     // Calculate the number of seconds passed since the last frame
@@ -94,7 +100,8 @@ function gameLoop(timeStamp) {
 
 }
 
-//functions
+
+// everything that's on the screen goes here
 function draw(){
 
     var c = document.getElementById("myCanvas");
@@ -122,6 +129,7 @@ function draw(){
     ctx.fillText(message2, textPosx2, textPosy2);
 
 
+// this just sees what buttons the user is clicking to determine if they've selected the correct option for this screen. 
     if(a == 1){
 
       if(b >= 2){
@@ -140,6 +148,7 @@ function draw(){
       }
     }
 
+    // figured out images finally
     else{
 
 
@@ -168,8 +177,7 @@ function draw(){
 };
 
 
-
-
+// just for fun
 function warnings(){
 
   if(warningType == 1){
@@ -182,6 +190,7 @@ function warnings(){
 }
 
 
+// screen 2 takes data from day 1 output. 
 function screen2(){
 
   message1 = "Input Your Data Here!";
@@ -213,6 +222,10 @@ class saves{
 }
 
 
+
+// UI on a "canvas". buttons and debug msgs
+
+//// 1
 let opt1 = document.querySelector('#opt1');
 
 opt1.addEventListener('w', (e) => {
